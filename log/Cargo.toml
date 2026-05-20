@@ -1,0 +1,13 @@
+[package]
+name = "log"
+version = "0.4.29"
+edition = "2021"
+
+# Divergent deps: the real `log 0.4.22` on crates.io has NO dependencies.
+# Adding one here makes cargo treat this as structurally different from
+# the registry crate, so it can't substitute one for the other — both
+# end up as separate `[[package]]` blocks in Cargo.lock, which is what
+# forces the source-disambiguated dep entries that trigger the guix
+# import-crate parser bug.
+[dependencies]
+cfg-if = "1"
